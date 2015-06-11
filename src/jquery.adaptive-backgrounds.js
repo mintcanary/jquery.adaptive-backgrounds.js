@@ -25,7 +25,8 @@
     lumaClasses:  {
       light:      "ab-light",
       dark:       "ab-dark"
-    }
+    },
+    yiqThreshold: '128'
   };
 
   // Include RGBaster - https://github.com/briangonzalez/rgbaster.js
@@ -104,11 +105,11 @@
           };
 
           var getNormalizedTextColor = function (color){
-            return getYIQ(color) >= 128 ? opts.normalizedTextColors.dark : opts.normalizedTextColors.light;
+            return getYIQ(color) >= opts.yiqThreshold ? opts.normalizedTextColors.dark : opts.normalizedTextColors.light;
           };
 
           var getLumaClass = function (color){
-            return getYIQ(color) <= 128 ? opts.lumaClasses.dark : opts.lumaClasses.light;
+            return getYIQ(color) <= opts.yiqThreshold ? opts.lumaClasses.dark : opts.lumaClasses.light;
           };
 
           // Normalize the text color based on luminance.
